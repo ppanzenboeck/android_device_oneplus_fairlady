@@ -1,7 +1,10 @@
 ## All proprietary files from this list, unless pinned and noted otherwise,
 ## are from OnePlus 15T (PLZ110_16.0.8.300(CN01)).
 
-abl.img;AB
+# Exception:
+# abl.img: from OnePlus 15T (PLZ110_16.0.5.703(CN01)). (VULNERABLE to efisp)
+
+abl.img;AB|0cf1d9f1b9411ad64714f04e99dcdb43b4eba573
 aop.img;AB
 aop_config.img;AB
 bluetooth.img;AB
