@@ -24,6 +24,10 @@ TARGET_SCREEN_WIDTH := 1216
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/oplus-romupdate-component-overrides.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/sysconfig/oplus-romupdate-component-overrides.xml
 
+# Device is 4K-pages (kernel CONFIG_ARM64_4K_PAGES=y); declare it so check_elf_file
+# does not require the 16K-readiness alignment that older 4K OEM camera JNI libs lack.
+PRODUCT_MAX_PAGE_SIZE_SUPPORTED := 4096
+
 # Display
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/display/displayconfig.xml:$(TARGET_COPY_OUT_VENDOR)/etc/displayconfig/display_id_4630946860609507731.xml
@@ -65,7 +69,9 @@ DEVICE_FRAMEWORK_COMPATIBILITY_MATRIX_FILE += \
 
 # Soong namespaces
 PRODUCT_SOONG_NAMESPACES += \
-    $(LOCAL_PATH)
+    $(LOCAL_PATH) \
+    hardware/nxp/keymint/generic \
+    hardware/nxp/weaver/generic
 
 # Touch features
 $(call soong_config_set_bool,OPLUS_LINEAGE_TOUCH_HAL,ENABLE_GM,true)
